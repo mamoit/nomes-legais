@@ -14,5 +14,8 @@ echo "Há $(wc -l femininos.txt) nomes femininos"
 grep "Masculinos" nomes.txt | awk '{print $4}' | sort | uniq > masculinos.txt
 echo "Há $(wc -l masculinos.txt) nomes masculinos"
 
+cat femininos.txt masculinos.txt | sort | uniq -c | sort -n | egrep "^\s+2" | awk '{ print $2 }' > neutros.txt
+echo "Há $(wc -l neutros.txt) nomes neutros"
+
 rm nomes.txt
 
