@@ -9,13 +9,13 @@ wget -qO nomes.pdf "${PDF_URL}"
 pdftotext -layout nomes.pdf nomes.txt
 
 grep "Femininos" nomes.txt | awk '{print $2}' | sort | uniq > femininos.txt
-echo "Há $(wc -l femininos.txt) nomes femininos"
+echo "Há $(wc -l femininos.txt | awk '{ print $1 }') nomes femininos"
 
 grep "Masculinos" nomes.txt | awk '{print $4}' | sort | uniq > masculinos.txt
-echo "Há $(wc -l masculinos.txt) nomes masculinos"
+echo "Há $(wc -l masculinos.txt | awk '{ print $1 }') nomes masculinos"
 
 cat femininos.txt masculinos.txt | sort | uniq -c | sort -n | egrep "^\s+2" | awk '{ print $2 }' > neutros.txt
-echo "Há $(wc -l neutros.txt) nomes neutros"
+echo "Há $(wc -l neutros.txt | awk '{ print $1 }') nomes neutros"
 
 rm nomes.txt
 
